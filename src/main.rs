@@ -21,12 +21,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let config: Config = serde_json::from_str(&contents).unwrap();
     let nanoleaf = NanoLeafClient::new(&config.access_token, &config.host);
-    //let resp = nanoleaf.info().await?;
-    //println!("{:#?}", resp);
-    //let select = nanoleaf.select(Some("Cool Breeze".to_string())).await?;
-    //println!("{:#?}", select.unwrap_or("None selected".to_string()));
-    //let _ = nanoleaf.request_effect("ATEST2".to_string()).await?;
-    //let _ = nanoleaf.add_wheel_effect("ATEST".to_string(), vec![lib::color::NanoLeafColor::new(50, 50, 50), lib::color::NanoLeafColor::new(89, 100, 85)]).await?;
-    let _ = nanoleaf.on(true).await?;
+    
+    let _ = nanoleaf.add_wheel_effect(
+        "ATEST".to_string(),
+        vec![
+            nanoleaf_rs::color::NanoLeafColor::new(50, 50, 50),
+            nanoleaf_rs::color::NanoLeafColor::new(150, 80, 65),
+            nanoleaf_rs::color::NanoLeafColor::new(89, 100, 85)]
+    ).await?;
     Ok(())
 }
