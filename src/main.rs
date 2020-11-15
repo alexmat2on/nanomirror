@@ -23,11 +23,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let nanoleaf = NanoLeafClient::new(&config.access_token, &config.host);
     
     let _ = nanoleaf.add_wheel_effect(
-        "ATEST".to_string(),
+        "ATEST",
         vec![
             nanoleaf_rs::color::NanoLeafColor::new(50, 50, 50),
             nanoleaf_rs::color::NanoLeafColor::new(150, 80, 65),
             nanoleaf_rs::color::NanoLeafColor::new(89, 100, 85)]
     ).await?;
+
+    let _ = nanoleaf.on(false).await?;
     Ok(())
 }
